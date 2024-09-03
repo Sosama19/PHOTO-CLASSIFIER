@@ -38,6 +38,10 @@ module.exports = async (req, res) => {
             try {
                 const [result] = await client.labelDetection(filePath);
                 const labels = result.labelAnnotations;
+
+                // Log the API response to understand its structure
+                console.log('API Response:', JSON.stringify(result, null, 2));
+
                 const categories = labels.map(label => label.description).join(', ');
 
                 res.status(200).json({ fileUrl, category: categories });
