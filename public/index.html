@@ -52,12 +52,14 @@
                 body: formData
             }).then(response => response.json())
               .then(data => {
+                  console.log('Server Response:', data); // Log the response to check its structure
                   document.getElementById('result').innerHTML = `
-                      <p>Classification: ${data.category}</p>
+                      <p>Classification: ${data.category || 'No classification available'}</p>
                       <p><img src="${data.fileUrl}" alt="Uploaded photo"></p>
                   `;
               })
               .catch(error => {
+                  console.error('Upload failed:', error);
                   document.getElementById('result').innerHTML = `<p>Upload failed. Please try again.</p>`;
               });
         });
